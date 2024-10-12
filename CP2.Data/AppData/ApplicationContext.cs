@@ -13,5 +13,18 @@ namespace CP2.Data.AppData
         public DbSet<FornecedorEntity> Fornecedor { get; set; }
         public DbSet<VendedorEntity> Vendedor { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<VendedorEntity>(entity =>
+            {
+                entity.Property(e => e.ComissaoPercentual)
+                      .HasPrecision(5, 2);
+
+                entity.Property(e => e.MetaMensal)
+                      .HasPrecision(18, 2);
+            });
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

@@ -6,6 +6,9 @@ using System.Net;
 
 namespace CP2.API.Controllers
 {
+    /// <summary>
+    /// Controlador para operações com fornecedores.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class FornecedorController : ControllerBase
@@ -20,7 +23,7 @@ namespace CP2.API.Controllers
         /// <summary>
         /// Metodo para obter todos os dados do Fornecedor
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Uma lista de fornecedores</returns>
         [HttpGet]
         [Produces<IEnumerable<FornecedorEntity>>]
         public IActionResult Get()
@@ -33,7 +36,11 @@ namespace CP2.API.Controllers
             return BadRequest("Não foi possivel obter os dados");
         }
 
-
+        /// <summary>
+        /// Obtém um fornecedor pelo ID.
+        /// </summary>
+        /// <param name="id">ID do fornecedor.</param>
+        /// <returns>Um fornecedor específico.</returns>
         [HttpGet("{id}")]
         [Produces<FornecedorEntity>]
         public IActionResult GetPorId(int id)
@@ -46,7 +53,11 @@ namespace CP2.API.Controllers
             return BadRequest("Não foi possivel obter os dados");
         }
 
-
+        /// <summary>
+        /// Adiciona um novo fornecedor.
+        /// </summary>
+        /// <param name="entity">Dados do fornecedor a serem adicionados.</param>
+        /// <returns>Fornecedor adicionado.</returns>
         [HttpPost]
         [Produces<FornecedorEntity>]
         public IActionResult Post([FromBody] FornecedorDto entity)
@@ -70,6 +81,12 @@ namespace CP2.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza os dados de um fornecedor existente.
+        /// </summary>
+        /// <param name="id">ID do fornecedor a ser atualizado.</param>
+        /// <param name="entity">Novos dados do fornecedor.</param>
+        /// <returns>Fornecedor atualizado.</returns>
         [HttpPut("{id}")]
         [Produces<FornecedorEntity>]
         public IActionResult Put(int id, [FromBody] FornecedorDto entity)
@@ -93,7 +110,11 @@ namespace CP2.API.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Exclui um fornecedor pelo ID.
+        /// </summary>
+        /// <param name="id">ID do fornecedor a ser excluído.</param>
+        /// <returns>Fornecedor excluído.</returns>
         [HttpDelete("{id}")]
         [Produces<FornecedorEntity>]
         public IActionResult Delete(int id)
